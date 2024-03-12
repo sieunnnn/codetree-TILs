@@ -1,4 +1,4 @@
 a, b = map(float, input().split())
-c = (a + b) / (a - b)
+c = float((a + b) / (a - b))
 
 print(f"{round(c, 2)}")
