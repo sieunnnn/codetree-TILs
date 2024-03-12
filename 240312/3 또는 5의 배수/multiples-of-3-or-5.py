@@ -2,13 +2,13 @@ a = int(input())
 answer = ""
 
 if (a % 3 == 0) :
-    answer = "YES"
+    answer = "YES\n"
 else :
-    answer = "NO"
+    answer = "NO\n"
 
-if (a % 5 == 0) :
-    answer += "\nYES"
+if (a % 5 == 0 or a == 5) :
+    answer += "YES"
 else :
-    answer = "\nNO"
+    answer += "NO"
 
 print(answer)
