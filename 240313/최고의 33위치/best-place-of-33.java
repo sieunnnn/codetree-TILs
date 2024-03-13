@@ -6,7 +6,7 @@ public class Main {
     static StringTokenizer st;
     static int[][] graph;
     static int N;
-    static int max;
+    static int max = 0;
     static int coinNum;
     static int x;
     static int y;
@@ -27,8 +27,8 @@ public class Main {
     }
 
     public static void solve() {
-        for (int i = 0; i < N; i ++) {
-            for (int j = 0; j < N; j ++) {
+        for (int i = 0; i <= N - 3; i++) {
+            for (int j = 0; j <= N - 3; j++) {
                 coinNum = 0;
                 checkCoin(i, j);
             }
@@ -36,8 +36,8 @@ public class Main {
     }
 
     public static void checkCoin(int x, int y) {
-        for (int i = y; i < N; i ++) {
-            for (int j = x; j < N; j ++) {
+        for (int i = y; i < y + 3; i ++) {
+            for (int j = x; j < x + 3; j ++) {
                 if (graph[i][j] == 1) {
                     coinNum ++;
                 }
