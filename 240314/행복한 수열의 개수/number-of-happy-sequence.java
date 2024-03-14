@@ -35,21 +35,23 @@ public class Main {
             for(int j = 1; j < n; j ++) {
                 if (graph[i][j] == graph[i][j -1]) {
                     cntRow ++;
+                } else {
+                    cntRow = 1;
                 }
 
                 if (graph[j][i] == graph[j - 1][i]) {
                     cntCol ++;
+                } else {
+                    cntCol = 1;
                 }
             }
 
             if (cntRow >= m) {
                 cnt ++;
-                cntRow = 1;
             }
 
             if (cntCol >= m) {
                 cnt ++;
-                cntCol = 1;
             }
         }
     }
