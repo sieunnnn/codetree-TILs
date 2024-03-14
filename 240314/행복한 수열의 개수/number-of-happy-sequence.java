@@ -32,6 +32,9 @@ public class Main {
             int cntRow = 1;
             int cntCol = 1;
 
+            int maxCntRow = 1;
+            int maxCntCol = 1;
+
             for(int j = 1; j < n; j ++) {
                 if (graph[i][j] == graph[i][j -1]) {
                     cntRow ++;
@@ -39,18 +42,22 @@ public class Main {
                     cntRow = 1;
                 }
 
+                maxCntRow = Math.max(maxCntRow, cntRow);
+
                 if (graph[j][i] == graph[j - 1][i]) {
                     cntCol ++;
                 } else {
                     cntCol = 1;
                 }
+
+                maxCntCol = Math.max(maxCntCol, cntCol);
             }
 
-            if (cntRow >= m) {
+            if (maxCntRow >= m) {
                 cnt ++;
             }
 
-            if (cntCol >= m) {
+            if (maxCntCol >= m) {
                 cnt ++;
             }
         }
