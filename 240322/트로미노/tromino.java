@@ -8,12 +8,21 @@ public class Main {
     static int m;
     static int[][] graph;
     static int[][][] blocks = {
-        {{0, 0}, {0, 1}, {1, 0}},
+        // L 모양
         {{0, 0}, {1, 0}, {1, 1}},
-        {{0, 0}, {1, 0}, {0, -1}},
+        {{0, 0}, {0, 1}, {1, 0}},
+        {{0, 0}, {-1, 0}, {-1, 1}},
+        {{0, 0}, {0, -1}, {1, 0}},
+        {{0, 0}, {1, 0}, {1, -1}},
+        {{0, 0}, {0, 1}, {-1, 0}},
         {{0, 0}, {-1, 0}, {-1, -1}},
+        {{0, 0}, {0, -1}, {-1, 0}},
+        
+        // 직선모양
         {{0, 0}, {0, 1}, {0, 2}},
         {{0, 0}, {1, 0}, {2, 0}},
+        {{0, 0}, {0, -1}, {0, -2}},
+        {{0, 0}, {-1, 0}, {-2, 0}}
     };
     static int answer = 0;
     
@@ -23,9 +32,9 @@ public class Main {
         m = Integer.parseInt(st.nextToken());
         
         graph = new int[n][m];
-        for(int i = 0; i < n; i ++) {
+        for(int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            for(int j = 0; j < m; j ++) {
+            for(int j = 0; j < m; j++) {
                 graph[i][j] = Integer.parseInt(st.nextToken());
             }
         }
@@ -35,33 +44,28 @@ public class Main {
     }
 
     public static void solve() {
-        for (int i = 0; i < n; i ++) {
-            for (int j = 0; j < m; j ++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
                 findMaxValue(i, j);
             }
         }
     }
 
     public static void findMaxValue(int y, int x) {
-        for (int k = 0; k < blocks.length; k ++) {
+        for (int k = 0; k < blocks.length; k++) {
             int sum = 0;
-            boolean isInside = true;
-
-            for (int s = 0; s < 3; s ++) {
+            for (int s = 0; s < 3; s++) {
                 int newY = y + blocks[k][s][0];
                 int newX = x + blocks[k][s][1];
 
                 if (newY >= 0 && newY < n && newX >= 0 && newX < m) {
                     sum += graph[newY][newX];
                 } else {
-                    isInside = false;
+                    sum = 0;
                     break;
                 }
             }
-
-            if (isInside) {
-                answer = Math.max(answer, sum);
-            }
+            answer = Math.max(answer, sum);
         }
     }
 }
