@@ -45,6 +45,8 @@ public class Main {
     public static void findMaxValue(int y, int x) {
         for (int k = 0; k < blocks.length; k ++) {
             int sum = 0;
+            boolean isInside = true;
+
             for (int s = 0; s < 3; s ++) {
                 int newY = y + blocks[k][s][0];
                 int newX = x + blocks[k][s][1];
@@ -52,11 +54,14 @@ public class Main {
                 if (newY >= 0 && newY < n && newX >= 0 && newX < m) {
                     sum += graph[newY][newX];
                 } else {
-                    sum = 0;
+                    isInside = false;
                     break;
                 }
             }
-            answer = Math.max(answer, sum);
+
+            if (isInside) {
+                answer = Math.max(answer, sum);
+            }
         }
     }
 }
