@@ -52,6 +52,7 @@ public class Main {
                 if (newY >= 0 && newY < n && newX >= 0 && newX < m) {
                     sum += graph[newY][newX];
                 } else {
+                    sum = 0;
                     break;
                 }
             }
