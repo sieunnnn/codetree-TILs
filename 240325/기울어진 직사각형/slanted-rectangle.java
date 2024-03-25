@@ -35,7 +35,7 @@ public class Main {
     }
 
     public static void solve(int x, int y, int width, int height) {
-        if (!isInBounds(x, y)) {
+        if (!isInBounds(x, y) || !isInBounds(x, y + width + height - 2)) {
             return;
         }
 
