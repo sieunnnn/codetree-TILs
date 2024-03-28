@@ -9,7 +9,6 @@ public class Main {
     static int[][] graph;
     static boolean[][] visited;
     static int max = Integer.MIN_VALUE;
-    static int cnt = 0;
 
     public static void main(String[] args) throws IOException {
         st = new StringTokenizer(br.readLine());
@@ -36,7 +35,9 @@ public class Main {
                 for (int k = i; k < n; k++) { // y2
                     for (int s = j; s < m; s++) { // x2
                         if(checkValues(j, i, s, k)) {
-                            max = Math.max(max, cnt);
+                            int width = s - j + 1;
+                            int height = k - i + 1;
+                            max = Math.max(max, width * height);
                         }
                     }
                 }
@@ -45,13 +46,10 @@ public class Main {
     }
 
     public static boolean checkValues(int x1, int y1, int x2, int y2) {
-        cnt = 0;
         for (int i = y1; i <= y2; i++) {
             for(int j = x1; j <= x2; j++) {
                 if(graph[i][j] < 0) {
                     return false;
-                } else {
-                    cnt ++;
                 }
             }
         }
