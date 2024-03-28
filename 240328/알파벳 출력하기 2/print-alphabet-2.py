@@ -11,4 +11,7 @@ for j in range(n):
         else:
             print(alpha_list[current_index], end=" ")
             current_index += 1
+            
+            if current_index > len(alpha_list):
+                current_index = 0
     print()
