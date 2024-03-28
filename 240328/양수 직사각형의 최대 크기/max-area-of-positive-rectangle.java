@@ -26,7 +26,11 @@ public class Main {
 
         makeBox();
         
-        System.out.println(max);
+        if (max == Integer.MIN_VALUE) {
+            System.out.print(-1);
+        } else {
+            System.out.println(max);
+        }
     }
 
     public static void makeBox() {
@@ -48,7 +52,7 @@ public class Main {
     public static boolean checkValues(int x1, int y1, int x2, int y2) {
         for (int i = y1; i <= y2; i++) {
             for(int j = x1; j <= x2; j++) {
-                if(graph[i][j] < 0) {
+                if(graph[i][j] <= 0) {
                     return false;
                 }
             }
