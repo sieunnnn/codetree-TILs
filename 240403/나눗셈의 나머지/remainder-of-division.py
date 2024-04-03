@@ -2,7 +2,7 @@ a, b = map(int, input().split())
 count = [0] * (a + 1)
 answer = 0
 
-while a >= 1:
+while a > 1:
     remain = a % b
     count[remain] += 1
 
