@@ -1,7 +1,7 @@
 n = int(input())
 numbers = list(map(int, input().split()))
 
-list.sort(numbers)
+list.reverse(numbers)
 
 for number in numbers:
     if number % 2 == 0:
