@@ -9,7 +9,7 @@ public class Main {
     static int[] dx = {-1, 1, 0, 0};
     static int[] dy = {0, 0, 1, -1};
     static int cnt = 0;
-    static int max = 0;
+    static int answer = 0;
 
     public static void main(String[] args) throws IOException {
         n = Integer.parseInt(br.readLine());
@@ -23,7 +23,7 @@ public class Main {
         }
 
         solve();
-        System.out.println(max);
+        System.out.println(answer);
     }
 
     public static void solve() {
@@ -41,11 +41,13 @@ public class Main {
                             }
                         }
                     }
+                    if (cnt >= 3) {
+                        answer++;
+                    }
                 } else {
                     continue;
                 }
             }
-            max = Math.max(cnt, max);
         }
     }
 }
