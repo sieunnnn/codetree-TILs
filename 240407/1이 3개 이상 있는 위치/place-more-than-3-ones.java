@@ -29,23 +29,19 @@ public class Main {
     public static void solve() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (map[i][j] == 0) {
-                    cnt = 0;
-                    for (int k = 0; k < 4; k++) {
-                        int nx = dx[k] + j;
-                        int ny = dy[k] + i;
+                cnt = 0; // 초기화
+                for (int k = 0; k < 4; k++) {
+                    int nx = dx[k] + j;
+                    int ny = dy[k] + i;
 
-                        if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
-                            if (map[nx][ny] == 1) {
-                                cnt++;
-                            }
+                    if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
+                        if (map[ny][nx] == 1) {
+                            cnt++;
                         }
                     }
-                    if (cnt >= 3) {
-                        answer++;
-                    }
-                } else {
-                    continue;
+                }
+                if (cnt >= 3) {
+                    answer++;
                 }
             }
         }
