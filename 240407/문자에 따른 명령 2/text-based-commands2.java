@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static int[] dx = {1, 0, -1, 0}; // 우 아래 좌 위
+    static int[] dx = {1, 0, -1, 0};
     static int[] dy = {0, -1, 0, 1};
     static int currentDir = 3;
     static String[] command;
