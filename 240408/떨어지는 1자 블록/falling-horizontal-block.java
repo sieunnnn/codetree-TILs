@@ -8,6 +8,7 @@ public class Main {
     static int m;
     static int k;
     static int[][] map;
+    static int startY = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws IOException {
         st = new StringTokenizer(br.readLine());
@@ -24,25 +25,25 @@ public class Main {
             }
         }
 
+        // System.out.println("입력: " + Arrays.deepToString(map));
+        findStartLine();
         solve();
         print();
     }
 
-    public static void solve() {
-        int startY = n;
-        for (int i = k; i < k + m; i++) {
-            for (int y = 0; y < n; y++) {
-                if (map[y][i] == 1) {
-                    startY = Math.min(startY, y - 1);
+    public static void findStartLine() {
+        for (int x = k; x < k + m; x++) {
+            for (int y = n - 1; y >= 0; y--) {
+                if (map[y][x] == 0) {
+                    startY = Math.min(startY, y);
+                    // System.out.println("startY: " + startY);
                     break;
-                }
-
-                if (y == n - 1) {
-                    startY = n - 1;
                 }
             }
         }
+    }
 
+    public static void solve() {
         for (int i = k; i < k + m; i++) {
             map[startY][i] = 1;
         }
