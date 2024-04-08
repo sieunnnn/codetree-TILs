@@ -37,7 +37,6 @@ public class Main {
                 if (map[y][x] == 0) {
                     startY = Math.max(startY, y);
                     // System.out.println("startY: " + startY);
-                    break;
                 }
             }
         }
