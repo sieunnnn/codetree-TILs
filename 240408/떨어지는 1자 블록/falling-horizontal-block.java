@@ -8,7 +8,8 @@ public class Main {
     static int m;
     static int k;
     static int[][] map;
-    static int startY = Integer.MIN_VALUE;
+    static int startY;
+    static List<Integer> rows = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         st = new StringTokenizer(br.readLine());
@@ -34,13 +35,29 @@ public class Main {
     public static void findStartLine() {
         for (int x = k; x < k + m; x++) {
             for (int y = 0; y < n; y++) {
-                if (map[y][x] == 0) {
-                    startY = Math.max(startY, y);
+                if (!isAllBlanked(y)) {
+                    // System.out.println("y: " + y);
+                    startY = y - 1;
                     // System.out.println("startY: " + startY);
+                    break;
+
+                } else if (y == n - 1) {
+                    startY = y;
+                    break;
                 }
             }
         }
     }
+
+    public static boolean isAllBlanked(int currentY) {
+        for (int i = k; i < k + m; i++) {
+            if (map[currentY][i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public static void solve() {
         for (int i = k; i < k + m; i++) {
