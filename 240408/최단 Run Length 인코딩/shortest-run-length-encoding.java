@@ -3,43 +3,53 @@ import java.io.*;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static String[] inputs;
-    static Map<String, Integer> counts = new HashMap<>();
-    static int cnt;
+    static String input;
+    static int min = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws IOException {
-        inputs = br.readLine().split("");
-        
-        for(String input:inputs) {
-            if(!counts.containsKey(input)) {
-                counts.put(input, 0);
-            } else {
-                counts.put(input, counts.get(input) + 1);
-            }
+        input = br.readLine();
+
+        // 문자가 1 개 일 때
+        if (input.length() == 1) {
+            System.out.println(2);
+            return;
         }
 
-        System.out.println(solve());
+        for (int i = 0; i < input.length(); i++) {
+            shiftString();
+            int encodedLength = encodedRLE();
+            min = Math.min(min, encodedLength);
+        }
+
+        System.out.println(min);
     }
 
-    public static int solve() {
-        String sentence1 = "";
-        String sentence2 = "";
+    public static void shiftString() {
+        StringBuilder sb = new StringBuilder();
+        int lastIdx = input.length() - 1;
 
-        for (String key : counts.keySet()) {
-            sentence1 += key;
-            sentence1 += String.valueOf(counts.get(key));
-        }
+        sb.append(input.charAt(lastIdx)).append(input.substring(0, lastIdx));
+        input = sb.toString();
+    }
 
-        for (int i = 1; i < inputs.length; i++) {
-            if (inputs[i - 1].equals(inputs[i])) {
-                cnt ++;
+    private static int encodedRLE() {
+        StringBuilder sb = new StringBuilder();
+        int cnt = 1;
+        
+        for (int i = 1; i < input.length(); i++) {
+            if (input.charAt(i - 1) == input.charAt(i)) {
+                cnt++;
             } else {
-                sentence2 += inputs[i - 1];
-                sentence2 += String.valueOf(cnt);
-                cnt = 0; // 초기화
+                sb.append(input.charAt(i - 1));
+                sb.append(cnt);
+                cnt = 1; // 초기화
             }
         }
 
-        return Math.max(sentence1.length(), sentence2.length());
+        // 마지막 문자
+        sb.append(input.charAt(input.length() - 1));
+        sb.append(cnt);
+
+        return sb.toString().length();
     }
 }
