@@ -8,7 +8,7 @@ public class Main {
     static int m;
     static int k;
     static int[][] map;
-    static int startY = Integer.MAX_VALUE;
+    static int startY = Integer.MIN_VALUE;
 
     public static void main(String[] args) throws IOException {
         st = new StringTokenizer(br.readLine());
@@ -33,9 +33,9 @@ public class Main {
 
     public static void findStartLine() {
         for (int x = k; x < k + m; x++) {
-            for (int y = n - 1; y >= 0; y--) {
+            for (int y = 0; y < n; y++) {
                 if (map[y][x] == 0) {
-                    startY = Math.min(startY, y);
+                    startY = Math.max(startY, y);
                     // System.out.println("startY: " + startY);
                     break;
                 }
