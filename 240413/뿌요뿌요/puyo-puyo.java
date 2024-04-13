@@ -27,9 +27,9 @@ public class Main {
             for(int j = 0; j < n; j++) {
                 if (!visited[i][j]) {
                     int blocksize = solve(j, i);
+                    max = Math.max(max, blocksize);
                     if (blocksize >= 4) {
                         cnt++;
-                        max = Math.max(max, blocksize);
                     }
                 }
             }
