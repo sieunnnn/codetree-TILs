@@ -40,7 +40,7 @@ public class Main {
             if (low <= hight) {
                 swap (low, hight);
                 low++;
-                hight++;
+                hight--;
             }
         }
         return low;
