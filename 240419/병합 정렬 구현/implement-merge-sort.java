@@ -7,10 +7,12 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
     static int N;
     static int[] numbers;
+    static int[] temp;  // 전역 임시 배열
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
         numbers = new int[N];
+        temp = new int[N];  // 초기화 위치 변경
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
@@ -34,7 +36,6 @@ public class Main {
         int i = start;
         int j = middle + 1;
         int temp_idx = start;
-        int temp[] = new int[numbers.length];
 
         while (i <= middle && j <= last) {
             if(numbers[i] < numbers[j]) {
@@ -44,11 +45,11 @@ public class Main {
             }
         }
         
-        while (i <= middle) { // 왼쪽 배열에 원소가 남아있는 경우
+        while (i <= middle) {
             temp[temp_idx++] = numbers[i++];
         }
 
-        while (j <= last) { // 오른쪽 배열에 원소가 남아있는 경우
+        while (j <= last) {
             temp[temp_idx++] = numbers[j++];
         }
 
