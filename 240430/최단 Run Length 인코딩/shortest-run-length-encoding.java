@@ -10,21 +10,21 @@ public class Main {
         str = br.readLine();
 
         for (int i = 0; i < str.length(); i++) {
-            String newStr = shiftStr();
-            findMinLength(newStr);
+            str = shiftStr(str);
+            findMinLength(str);
         }
 
         System.out.println(min_length);
     }
 
-    public static String shiftStr() {
-        int lastIdx = str.length() - 1;
-        String temp = str.substring(0, lastIdx - 1);
-
-        return str.charAt(lastIdx) + temp;
+    public static String shiftStr(String str) {
+        int len = str.length();
+        return str.charAt(len - 1) + str.substring(0, len - 1);
     }
 
+
     public static void findMinLength(String str) {
+        // System.out.println(str);
         int cnt = 1;
         StringBuilder temp = new StringBuilder();
 
@@ -41,4 +41,4 @@ public class Main {
         temp.append(str.charAt(str.length() - 1)).append(cnt);
         min_length = Math.min(min_length, temp.length());
     }
-}
+ }
