@@ -16,13 +16,20 @@ public class Main {
         graph = new int[n][m];
         initGraph();
 
-        for (int i = 0; i < m; i++) {
-            for (int j = i; j < m; j++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
                 if (graph[i][j] < 0) {
                     break;
                 }
-
-                findMaxSize(i, j);
+                
+                for (int k = i; k < n; k++) {
+                    for (int s = j; s < m; s++) {
+                        if (graph[k][s] < 0) {
+                            break;
+                        }
+                        findMaxSize(i, j, k, s);
+                    }
+                }
             }
         }
 
@@ -38,22 +45,21 @@ public class Main {
         }
     }
 
-    public static void findMaxSize(int x1, int x2) {
+    public static void findMaxSize(int y1, int x1, int y2, int x2) {
         boolean checkSize = true;
         int size = 0;
 
-        for (int i = 0; i < n; i ++) {
+        for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
                 if (graph[i][j] < 0) {
                     checkSize = false;
-                    break;
                 }
             }
-
-            if (checkSize) {
-                size = (x2 - x1 + 1) * (i + 1);
-                max_size = Math.max(max_size, size);
-            }
+        }
+        
+        if (checkSize) {
+            size = (x2 - x1 + 1) * (y2 - y1 + 1);
+            max_size = Math.max(max_size, size);
         }
     }
 }
