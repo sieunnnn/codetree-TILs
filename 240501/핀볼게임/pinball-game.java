@@ -69,8 +69,6 @@ public class Main {
 
         } else if (nextDirection.equals("right")) {
             findMaxTime(x + 1, y, nextDirection, time + 1, false);
-        } else {
-            System.out.println("!!");
         }
     }
 
@@ -85,8 +83,6 @@ public class Main {
 
         } else if (currentValue == 2) {
             nextDirection = map2.get(direction);
-        } else {
-            System.out.println("!!!!!");
         }
 
         return nextDirection;
