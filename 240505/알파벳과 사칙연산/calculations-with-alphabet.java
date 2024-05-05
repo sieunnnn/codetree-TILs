@@ -1,58 +1,79 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static Map<String, Integer> map = new HashMap<>();
+    static String[] equation;
+    static String[] alphabets;
+
     static int[] numbers = {1, 2, 3, 4};
-    static List<String> operations = new ArrayList<>();
+    static int max = Integer.MIN_VALUE;
     static int count;
-    static int maxResult = Integer.MIN_VALUE;
 
     public static void main(String[] args) throws IOException {
-        String[] input = br.readLine().split("");
-        int id = 0;
-        
-        for (int i = 0; i < input.length; i++) {
-            if (i % 2 != 0) { // 홀수 -> 연산자
-                operations.add(input[i]);
-            } else {
-                count++;
-            }
-        } 
+        equation = br.readLine().split("");
 
-        solve(0, new ArrayList<>());
-        System.out.println(maxResult);
+        int length = equation.length / 2 + 1;
+
+        alphabets = new String[length];
+
+        for (int i = 0; i < equation.length; i++) {
+            if (i % 2 == 0) { // 짝수 -> 알파벳
+                String alphabet = equation[i];
+                map.put(alphabet, 0);
+            }
+        }
+
+        count = map.size();
+        // System.out.println(count);
+        mapInit();
+        solve(0, 0);
+
+        System.out.println(max);
     }
 
-    public static void solve(int depth, List<Integer> current) {
+    public static void mapInit() {
+        int id = 0;
+
+        for (String key : map.keySet()) {
+            alphabets[id++] = key;
+        }
+    }
+
+    public static void solve(int start, int depth) {
         if (depth == count) {
-            int result = calculateResult(current);
-            maxResult = Math.max(maxResult, result);
+            int result = calculate();
+            max = Math.max(result, max);
+
+            // for (String key: map.keySet()) {
+            //     System.out.print(map.get(key) + " ");
+            // }
+
+            // System.out.println(result);
             return;
         }
 
-        for (int i = 0; i < numbers.length; i++) {
-            current.add(numbers[i]);
-            solve(depth + 1, current);
-            current.remove(current.size() - 1);
+        for (int i = start; i < numbers.length; i++) {
+            map.put(alphabets[depth], numbers[i]);
+            // System.out.print(alphabets[depth] + " " + numbers[i] + " ");
+            solve(0, depth + 1); 
         }
+        // System.out.println("\n");
     }
 
-    public static int calculateResult(List<Integer> numbers) {
-        int result = numbers.get(0);
+    public static int calculate() {
+        int result = map.get(equation[0]);
 
-        for (int i = 1; i < numbers.size(); i++) {
-            String operation = operations.get(i - 1);
-            int nextNum = numbers.get(i);
+        for (int i = 1; i < equation.length; i += 2) {
+            if (equation[i].equals("+")) {
+                result += map.get(equation[i + 1]);
 
-            if (operation.equals("+")) {
-                result += nextNum;
+            } else if (equation[i].equals("-")) {
+                result -= map.get(equation[i + 1]);
 
-            } else if (operation.equals("-")) {
-                result -= nextNum;
-                
-            } else if (operation.equals("*")){
-                result *= nextNum;
+            } else if (equation[i].equals("*")){
+                result *= map.get(equation[i + 1]);
             }
         }
 
