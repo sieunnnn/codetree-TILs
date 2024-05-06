@@ -38,7 +38,9 @@ public class Main {
 
         for (int i = 1; i <= max; i++) {
             int nextId = currentId + i;
-            solve(numbers[nextId], nextId, count + 1);
+            if (nextId < n && nextId > 0) {
+                solve(numbers[nextId], nextId, count + 1);
+            }
         }
     }
 }
