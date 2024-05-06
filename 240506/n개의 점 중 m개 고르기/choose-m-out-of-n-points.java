@@ -7,9 +7,11 @@ public class Main {
 
     static int[][] dots;
     static int[] ids;
+    static int[] twoDots = new int[2];
 
     static int n, m;
     static int min = Integer.MAX_VALUE;
+    static int max = Integer.MIN_VALUE;
 
     static List<Integer> maxes = new ArrayList<>();
 
@@ -34,22 +36,18 @@ public class Main {
             solve(i, 0);
         }
 
-        findMax();
-
+        findMin();
         System.out.println(min);
     }
 
     public static void solve(int start, int depth) {
         if (depth == m) {
             // System.out.println(Arrays.toString(ids));
-            int id1 = ids[0];
-            int id2 = ids[1];
-            int x1 = dots[id1][0];
-            int x2 = dots[id2][0];
-            int y1 = dots[id1][1];
-            int y2 = dots[id2][1];
-            caculate(x1, x2, y1, y2);
-
+            for (int i = 0; i < ids.length; i++) {
+                pickTwoDots(i, 0);
+            }
+            maxes.add(max);
+            max = Integer.MIN_VALUE;
             return;
         }
 
@@ -59,13 +57,33 @@ public class Main {
         }
     }
 
+    public static void pickTwoDots(int start, int depth) {
+        if (depth == 2) {
+            // System.out.println(Arrays.toString(twoDots));
+            int id1 = twoDots[0];
+            int id2 = twoDots[1];
+            int x1 = dots[id1][0];
+            int x2 = dots[id2][0];
+            int y1 = dots[id1][1];
+            int y2 = dots[id2][1];
+            caculate(x1, x2, y1, y2);
+            return;
+        }
+
+
+        for (int i = start; i < ids.length; i++) {
+            twoDots[depth] = ids[i];
+            pickTwoDots(i + 1, depth + 1);
+        }
+    }
+
     public static void caculate(int x1, int x2, int y1, int y2) {
         int result = (int)(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
         // System.out.println(result);
-        maxes.add(result);
+        max = Math.max(max, result);
     }
 
-    public static void findMax() {
+    public static void findMin() {
         for (int max : maxes) {
             // System.out.println(max);
             min = Math.min(max, min);
