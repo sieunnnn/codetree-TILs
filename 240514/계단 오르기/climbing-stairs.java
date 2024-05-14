@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
-    static int[] fibonacci = new int[46];
+    static int[] fibonacci = new int[10001];
     static int N;
 
     public static void main(String[] args) throws IOException {
