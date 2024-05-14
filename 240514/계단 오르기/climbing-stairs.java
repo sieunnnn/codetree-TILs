@@ -9,8 +9,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
-        makeFibonacci();
-        System.out.println(fibonacci[N]);
+        if (N == 1) {
+            System.out.println(0);
+
+        } else {
+            makeFibonacci();
+            System.out.println(fibonacci[N]);
+        }
     }
 
     public static void makeFibonacci() {
