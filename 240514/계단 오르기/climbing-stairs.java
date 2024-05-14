@@ -3,22 +3,22 @@ import java.io.*;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static int n;
-    static int[] steps = new int[1001];
+    static StringTokenizer st;
+    static int[] fibonacci = new int[46];
+    static int N;
 
     public static void main(String[] args) throws IOException {
-        n = Integer.parseInt(br.readLine());
-        makeSteps();
-        System.out.println(steps[n]);
+        N = Integer.parseInt(br.readLine());
+        makeFibonacci();
+        System.out.println(fibonacci[N]);
     }
 
-    public static void makeSteps() {
-        steps[2] = 1;
-        steps[3] = 1;
-        steps[4] = 1;
+    public static void makeFibonacci() {
+        fibonacci[1] = 1 % 10007;
+        fibonacci[2] = 1 % 10007;
 
-        for (int i = 5; i < 1001; i++) {
-            steps[i] = steps[i - 2] + steps[i - 3];
+        for (int i = 3; i < 46; i++) {
+            fibonacci[i] = (fibonacci[i - 1] + fibonacci[i - 2]) % 10007;
         }
     }
 }
