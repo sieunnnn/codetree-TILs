@@ -9,20 +9,16 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
-        if (N == 1) {
-            System.out.println(0);
-
-        } else {
-            makeFibonacci();
-            System.out.println(fibonacci[N]);
-        }
+        makeFibonacci();
+        System.out.println(fibonacci[N]);
     }
 
     public static void makeFibonacci() {
+        fibonacci[0] = 1;
         fibonacci[2] = 1;
         fibonacci[3] = 1;
 
-        for (int i = 4; i < 46; i++) {
+        for (int i = 4; i < 1001; i++) {
             fibonacci[i] = (fibonacci[i - 2] + fibonacci[i - 3]) % 10007;
         }
     }
