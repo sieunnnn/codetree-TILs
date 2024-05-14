@@ -14,11 +14,11 @@ public class Main {
     }
 
     public static void makeFibonacci() {
-        fibonacci[1] = 1 % 10007;
-        fibonacci[2] = 1 % 10007;
+        fibonacci[2] = 1;
+        fibonacci[3] = 1;
 
-        for (int i = 3; i < 46; i++) {
-            fibonacci[i] = (fibonacci[i - 1] + fibonacci[i - 2]) % 10007;
+        for (int i = 4; i < 46; i++) {
+            fibonacci[i] = (fibonacci[i - 2] + fibonacci[i - 3]) % 10007;
         }
     }
 }
